@@ -17,27 +17,9 @@ colors.forEach( function (x) {
     } )
 })
 
-//--------   Events =>
+//--------   The main function is to add notes =>
 
-btnSave.addEventListener("click" , function () {
-    let newNoteDiv = $.createElement("div")
-    newNoteDiv.className = "card shadow-sm rounded"
-    newNoteDiv.style.backgroundColor = input.style.backgroundColor
-
-    let newNoteParagraph = $.createElement("p")
-    newNoteParagraph.className = "card-text p-3"
-    newNoteParagraph.innerHTML = input.value
-
-    newNoteDiv.append(newNoteParagraph)
-    notes.append(newNoteDiv)
-
-    newNoteDiv.addEventListener("click" , function (event) {
-        event.target.parentElement.remove()
-    } )
-})
-
-input.addEventListener("keydown" , function (event) {
-    if (event.which === 13) {
+    function noteSaveHandler() {
         let newNoteDiv = $.createElement("div")
         newNoteDiv.className = "card shadow-sm rounded"
         newNoteDiv.style.backgroundColor = input.style.backgroundColor
@@ -48,10 +30,19 @@ input.addEventListener("keydown" , function (event) {
     
         newNoteDiv.append(newNoteParagraph)
         notes.append(newNoteDiv)
-
+    
         newNoteDiv.addEventListener("click" , function (event) {
             event.target.parentElement.remove()
         } )
+    }
+
+//--------   Events =>
+
+btnSave.addEventListener("click" , noteSaveHandler)
+
+input.addEventListener("keydown" , function (event) {
+    if (event.which === 13) {
+        noteSaveHandler()
     }
 })
 
